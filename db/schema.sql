@@ -1,0 +1,1 @@
+CREATE DATABASE cinemagic_db;
