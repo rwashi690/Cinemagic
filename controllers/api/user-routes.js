@@ -21,3 +21,27 @@ router.post('/', async (req, res) => {
   }
 });
 
+// login user
+router.post('/login', async (req, res) => {
+  try {
+    const loginUser = await User.findOne({
+      where: {
+        username: req.body.username,
+      },
+    });
+
+    if(!loginUser) {
+      res.status(400).json({ message: 'Username or password is incorrect. Please try again.'});
+      return;
+    }
+
+    const pwValidation = await loginUser.checkPassword(req.body.password);
+
+    if(!pwValidation) {
+      res.status(400).json({ message: 'Username or password is incorrect. Please try again.'});
+      return;
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
