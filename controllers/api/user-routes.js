@@ -41,7 +41,26 @@ router.post('/login', async (req, res) => {
       res.status(400).json({ message: 'Username or password is incorrect. Please try again.'});
       return;
     }
+
+    req.session.save(() => {
+      req.session.loggedIn = true;
+
+      res.status(200).json({ user: loginUser, message: 'You are logged in.'});
+    });
   } catch (err) {
     res.status(500).json(err);
   }
 });
+
+//logout
+router.post('/logout', (req, res) => {
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
+});
+
+module.exports = router;
