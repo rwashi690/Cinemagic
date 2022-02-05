@@ -10,27 +10,24 @@ div class="row">
 
     <form class="form new-movie-form">
       <div class="form-group">
-        <label for="project-name">:</label>
+        <label for="movie-name">:</label>
         <input class="form-input" type="text" id="movie-search" name="movie-name" />
       </div>
       
 
   {{#if movies.length}}
   <div class="col-md-6 project-list">
-    <h3>Search Movies:</h3>
 
     {{#each movies as |movie|}}
     <div class="row mb-2">
       <div class="col-md-8">
-        <h4><a href="/project/{{movie.title}}">{{movie.avgRating}}{{movie.avgRating}}</a></h4>
+        <h4>{{movie.title}} {{movie.avgRating}} {{movie.avgRating}}</h4>
       </div>
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="{{project.id}}">DELETE</button>
-      </div>
+      
     </div>
     {{/each}}
   </div>
   {{/if}}
 </div>
 
-<script src="./js/profile.js"></script>
+{{!-- <script src="./js/profile.js"></script> --}}
