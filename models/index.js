@@ -4,7 +4,7 @@ const Movie = require('./Movie');
 const UserTag = require('./UserTag');
 
 // User has many Movie through UserTag
-User.hasMany(Movie, {
+User.belongsToMany(Movie, {
   through: UserTag,
 });
 
