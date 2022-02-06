@@ -1,4 +1,4 @@
-//
+//Create javascript
 const loginHandler = async (event) => {
   event.preventDefault();
   //Get values of name and email from HTML by targetting the ids
@@ -6,19 +6,18 @@ const loginHandler = async (event) => {
   const password = document.querySelector('#password_login').value.trim();
   //Check to see if a username and password were entered
   if (username && password) {
-    const response = await fetch('/api/users/login', {
+    const response = await fetch('/login', {
       method: 'POST',
       body:JSON.stringify({username, password}),
       headers: {'Content-Type':'application/json'},
     });
     if (response.ok) {
-      document.location.replace('/profile');
+      document.location.replace('/user');
     } else {
       alert(response.statusText);
     }
   }
 };
-document.querySelector('.loginForm').addEventListener('submit', loginHandler);
 
 const signupHandler =async (event)=>{
   event.preventDefault();
@@ -27,18 +26,19 @@ const signupHandler =async (event)=>{
   const password = document.querySelector('#password_signup').value.trim();
 
   if (username && email && password){
-    const response = await fetch ('/api/users/signup', {
+    const response = await fetch ('/', {
       method: 'POST',
       body: JSON. stringify({username, email, password}),
       headers: {'Content-Type':'application/json'},
     });
 
     if (response.ok) {
-      document.location.replace('/profile');
+      document.location.replace('/user');
     } else {
       alert((response.statusText));
     }
   }
 };
 
+document.querySelector('.loginForm').addEventListener('submit', loginHandler);
 document.querySelector('.signupForm').addEventListener('submit', signupHandler);
