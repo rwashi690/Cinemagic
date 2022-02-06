@@ -91,4 +91,24 @@ router.get('/:id', withAuth, async (req, res) => {
   }
 });
 
+// delete a userTag
+router.delete('/:id', withAuth, async (req, res) => {
+  try {
+    const doomedData = await UserTag.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+
+    if (!doomedData) {
+      res.status(404).json({ message: 'No movie found with that id!' });
+      return;
+    }
+
+    res.status(200).json(doomedData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;
