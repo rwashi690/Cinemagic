@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { UserTag, Movie } = require('../models');
 
 // get all Movie belong to User logged in
+
 // router.get('/:id', withAuth, async (req, res) => {
 //   try {
 //     const userTags = await UserTag.findAll({
@@ -74,7 +75,15 @@ router.get('/:id', withAuth, async (req, res) => {
       return;
     }
 
-    const userMovies = userTags.map(userTags => userTags.movie_id);
+    const moviePromises = userTags.map(tag => {
+      return Movie.findAll({
+        where: {
+          id: tag.movie_id,
+        }
+      });
+    });
+
+    const userMovies = await Promise.all(moviePromises);
 
     res.status(200).json(userMovies);
   } catch (err) {
