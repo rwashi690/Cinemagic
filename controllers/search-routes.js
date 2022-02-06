@@ -2,7 +2,7 @@
 const router = require('express').Router();
 
 // import models from models folder
-const { User, UserTag, Movie } = require('../models');
+const { UserTag, Movie } = require('../models');
 
 // import login authentication
 const withAuth = require('../utils/authentication');
@@ -11,7 +11,7 @@ const withAuth = require('../utils/authentication');
 router.post('/', withAuth, async (req, res) => {
   try {
     const newMovie = await Movie.create(req.body);
-    const newUserTag = await UserTag.create({ movie_id: newMovie.id, user_id: req.user.id });
+    const newUserTag = await UserTag.create({ movie_id: newMovie.id, user_id: req.session.userId });
 
     res.status(200).json(newUserTag);
   } catch (err) {
