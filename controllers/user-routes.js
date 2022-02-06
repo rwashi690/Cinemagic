@@ -1,5 +1,9 @@
+// import express
 const router = require('express').Router();
+// import models
 const { UserTag, Movie } = require('../models');
+// import authentication
+const withAuth = require('../utils/authentication.js');
 
 // get all Movie belong to User logged in
 
