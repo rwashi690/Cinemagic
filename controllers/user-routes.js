@@ -70,7 +70,7 @@ router.get('/:id', withAuth, async (req, res) => {
   try {
     const userTags = await UserTag.findAll({
       where: {
-        user_id: req.params.id,
+        user_id: req.session.userId,
       }
     });
 
