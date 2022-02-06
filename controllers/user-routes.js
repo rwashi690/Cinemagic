@@ -96,16 +96,37 @@ router.get('/:id', withAuth, async (req, res) => {
 });
 
 // delete a userTag
+// router.delete('/:id', withAuth, async (req, res) => {
+//   try {
+//     const doomedData = await UserTag.destroy({
+//       where: {
+//         id: req.params.id,
+//       },
+//     });
+
+//     if (!doomedData) {
+//       res.status(404).json({ message: 'No movie found with that id!' });
+//       return;
+//     }
+
+//     res.status(200).json(doomedData);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
 router.delete('/:id', withAuth, async (req, res) => {
   try {
+    const findDoomedData = await Movie.findByPk(req.params.id);
     const doomedData = await UserTag.destroy({
       where: {
-        id: req.params.id,
+        movie_id: findDoomedData.id,
+        user_id: req.sessions.userId,
       },
     });
 
     if (!doomedData) {
-      res.status(404).json({ message: 'No movie found with that id!' });
+      res.status(404).json({ message: 'That movie is not in your collection!' });
       return;
     }
 
