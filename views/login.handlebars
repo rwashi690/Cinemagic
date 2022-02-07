@@ -1,42 +1,51 @@
-<div class="row">
-  <div class="col-md-6">
-    <h2>Login</h2>
-
-    <form class="form loginForm">
+<container class="flex justify-center space-x-8">
+  <div class="">
+    <form class="bg-white shadow-lg px-6 pt-4 pb-6 mb-2 rounded loginForm">
       <div class="form-group">
-        <label for="username_login">Username:</label>
-        <input class="form-input" type="text" id="username_login" />
+        <label class="text-slate-800 font-bold" for="username_login">Username:</label>
+        <input class="shadow border rounded w-full text-slate-500 leading-tight py-2" type="text" id="username_login" />
       </div>
       <div class="form-group">
-        <label for="password_login">Password:</label>
-        <input class="form-input" type="password" id="password_login" />
+        <label class="text-slate-800 font-bold" for="password_login">Password:</label>
+        <input class="shadow border rounded w-full text-slate-500 leading-tight py-2" type="password"
+          id="password_login" />
       </div>
       <div class="form-group">
-        <button class="btn btn-primary" type="submit">Login!</button>
-      </div>
-    </form>
-  </div>
-  <div class="col-md-6"> 
-    <h2>Signup</h2>
-
-    <form class="form signupForm">
-      <div class="form-group">
-        <label for="username-signup">Username:</label>
-        <input class="form-input" type="text" id="username_signup" />
-      </div>
-      <div class="form-group">
-        <label for="email">Email:</label>
-        <input class="form-input" type="text" id="email" />
-      </div>
-      <div class="form-group">
-        <label for="password-signup">Password:</label>
-        <input class="form-input" type="password" id="password_signup" />
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary" type="submit">Sign-Up!</button>
+        <button
+          class="mt-2 inline-block px-5 py-3 rounded-lg shadow-lg bg-blue-400 text-white tracking-wider font-semibold"
+          type="submit">Login!</button>
       </div>
     </form>
   </div>
-</div>
 
-<script src="./js/login.js"></script>
+  <div class="">
+    <img src="/images/cinemagic-unbutu.png" alt="cine-logo">
+  </div>
+
+  <div class="">
+    <form class="bg-white shadow-lg px-6 pt-4 pb-6 mb-2 rounded signupForm">
+      <div class="form-group">
+        <label class="text-slate-800 font-bold" for="username-signup">Username:</label>
+        <input class="shadow border rounded w-full text-slate-500 leading-tight py-2 form-input" type="text"
+          id="username_signup" />
+      </div>
+      <div class="form-group">
+        <label class="text-slate-800 font-bold" for="email">Email:</label>
+        <input class="shadow border rounded w-full text-slate-500 leading-tight py-2 form-input" type="text"
+          id="email" />
+      </div>
+      <div class="form-group">
+        <label class="text-slate-800 font-bold" for="password-signup">Password:</label>
+        <input class="shadow border rounded w-full text-slate-500 leading-tight py-2 form-input" type="password"
+          id="password_signup" />
+      </div>
+      <div class="form-group">
+        <button
+          class="mt-2 inline-block px-5 py-3 rounded-lg shadow-lg bg-blue-400 text-white tracking-wider font-semibold btn btn-primary"
+          type="submit">Sign-Up!</button>
+      </div>
+    </form>
+  </div>
+  </div>
+
+  <script src="./js/login.js"></script>
