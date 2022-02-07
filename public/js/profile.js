@@ -9,6 +9,9 @@
 //     body: doomedId,
 //   });
 
+// const res = require('express/lib/response');
+// const { get } = require('express/lib/response');
+
 //   if (response.ok) {
 //     document.location.replace('/user/' + userID);
 //   } else {
@@ -20,6 +23,26 @@
 // document
 //   .querySelector('.removeMovie-button')
 //   .addEventListener('click', removeMovieHandler(movieID, userID));
+
+// display all movies belong to user on page load
+const loadAllMoviesHandler = async (event) => {
+  event.preventDefault();
+
+  const userID = req.sessions.userId;
+
+  if (userID) {
+    const response = await fetch('/user/' + userID, {
+      method: 'GET',
+      body: userID,
+    });
+
+    if (response.ok) {
+      document.location.replace('/user/' + userID);
+    } else {
+      res.status(500).json({ message: 'Oops, something went wrong.' });
+    }
+  }
+};
 
 // remove movie from collection
 const removeMovieHandler = async (event) => {
@@ -43,7 +66,9 @@ const removeMovieHandler = async (event) => {
   }
 };
 
-// add event listener to activate
+// add event listeners to activate
 document
   .querySelector('.removeMovie-button')
   .addEventListener('submit', removeMovieHandler);
+
+document.addEventListener('load', loadAllMoviesHandler);
