@@ -1,15 +1,16 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const req = require('express/lib/request');
+const { Movie, User } = require('../models');
+const withAuth = require('../utils/authentication.js');
 
 //Create a new user
 router.post('/', async (req, res) => {
-  try {
+  try{
     const userData = await User.create({
       username: req.body.username,
       email: req.body.email,
       password: req.body.password,
     });
-
     //Setting up sessions with a variable of logged_in set to `true`
     req.session.save(() => {
       req.session.logged_in = true;
@@ -17,7 +18,7 @@ router.post('/', async (req, res) => {
       req.session.userId = userData.id;
       res.status(200).json(userData);
     });
-  } catch (err) {
+  } catch(err) {
     res.status(500).json(err);
   }
 });
@@ -66,3 +67,12 @@ router.post('/logout', (req, res) => {
 });
 
 module.exports = router;
+
+//generate the index.js and handlebars page by completing a get request
+router.get('/', async (req, res) =>{
+  // if (req.session.logged_in){
+  //   res.redirect('profile');
+  //   return;
+  // }
+  res.render('login');
+});
