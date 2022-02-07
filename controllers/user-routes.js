@@ -66,7 +66,7 @@ const withAuth = require('../utils/authentication.js');
 //   }
 // });
 
-router.get('/:id', withAuth, async (req, res) => {
+router.get('/profile', withAuth, async (req, res) => {
   try {
     const userTags = await UserTag.findAll({
       where: {
@@ -121,7 +121,7 @@ router.get('/:id', withAuth, async (req, res) => {
 //   }
 // });
 
-router.delete('/:id', withAuth, async (req, res) => {
+router.delete('/profile', withAuth, async (req, res) => {
   try {
     const findDoomedData = await Movie.findByPk(req.params.id);
     const doomedData = await UserTag.destroy({
