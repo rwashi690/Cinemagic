@@ -20,3 +20,12 @@ router.post('/', withAuth, async (req, res) => {
 });
 
 module.exports = router;
+
+//generate the index.js and handlebars page by completing a get request
+router.get('/', async (req, res) =>{
+  if (req.session.logged_in){
+    res.redirect('/search');
+    return;
+  }
+  res.render('searchResults');
+});

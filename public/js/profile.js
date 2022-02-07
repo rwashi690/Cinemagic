@@ -42,7 +42,7 @@ const removeMovieHandler = async (event) => {
 
 // add event listeners to activate
 document
-  .querySelector('.removeMovie-button')
-  .addEventListener('submit', removeMovieHandler);
+  .getElementById('delete-button')
+  .addEventListener('click', removeMovieHandler);
 
 document.addEventListener('load', loadAllMoviesHandler);
