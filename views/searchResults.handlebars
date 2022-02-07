@@ -24,7 +24,7 @@ div class="row">
         {{#each movies as |movie|}}
         <div class="row mb-2">
           <div class="col-md-8">
-            {{!-- <img src=` ${image source}`> --}}
+            <img src="https://image.tmdb.org/t/p/w154/{{poster_path}}.jpg" alt= "movie-poster">
             <h4>{{movie.title}}</h4>
             <h4>{{movie.avgRating}} </h4>
             <h4>{{movie.releaseDate}}</h4>
