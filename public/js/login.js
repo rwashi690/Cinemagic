@@ -12,7 +12,8 @@ const loginHandler = async (event) => {
       headers: {'Content-Type':'application/json'},
     });
     if (response.ok) {
-      document.location.replace('/user');
+      //document.location.replace('/user');
+      window.location = '/user';
     } else {
       alert(response.statusText);
     }
@@ -33,7 +34,8 @@ const signupHandler =async (event)=>{
     });
 
     if (response.ok) {
-      document.location.replace('/user');
+      //document.location.replace('/user');
+      window.location = '/user';
     } else {
       alert((response.statusText));
     }

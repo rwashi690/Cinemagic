@@ -1,74 +1,144 @@
-//Create a new user
-router.post('/', async (req, res) => {
+// import express
+const router = require('express').Router();
+// import models
+const { UserTag, Movie } = require('../models');
+// import authentication
+const withAuth = require('../utils/authentication.js');
+
+// get all Movie belong to User logged in
+
+// router.get('/:id', withAuth, async (req, res) => {
+//   try {
+//     const userTags = await UserTag.findAll({
+//       where: {
+//         user_id: req.params.id,
+//       }
+//     });
+
+//     if(!userTags) {
+//       res.status(200).json({ message: 'You have not added any movies to your collection!'});
+//       return;
+//     }
+
+//     const userMovies = await Movie.findAll({
+//       where: {
+//         id: userTags,
+//       }
+//     });
+
+//     res.status(200).json(userMovies);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+// router.get('/:id', withAuth, async (req, res) => {
+//   try {
+//     const userTags = await UserTag.findAll({
+//       where: {
+//         user_id: req.params.id,
+//       }
+//     });
+
+//     const userMovies = await UserTag.findAll({
+//       include: [
+//         {
+//           model: Movie,
+//           required: true,
+//         },
+//         {
+//           model: UserTag,
+//           required: true,
+//           include: {
+//             model: User,
+//             required: true,
+//             where: {
+//               id: userTags.map(movie => movie.user_id),
+//             },
+//           },
+//         },
+//       ],
+//     });
+
+//     res.status(200).json(userMovies);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+router.get('/:id', withAuth, async (req, res) => {
   try {
-    const userData = await User.create({
-      username: req.body.username,
-      email: req.body.email,
-      password: req.body.password,
+    const userTags = await UserTag.findAll({
+      where: {
+        user_id: req.session.userId,
+      }
     });
 
-    //Setting up sessions with a variable of logged_in set to `true`
-    req.session.save(() => {
-      req.session.logged_in = true;
-      req.session.username = userData.username;
-      req.session.userId = userData.id;
-      res.status(200).json(userData);
+    if(!userTags) {
+      res.status(200).json({ message: 'You have not added any movies to your collection!'});
+      return;
+    }
+
+    const moviePromises = userTags.map(tag => {
+      return Movie.findAll({
+        where: {
+          id: tag.movie_id,
+        }
+      });
     });
-  } catch (err) {
+
+    const userMovies = await Promise.all(moviePromises);
+
+    //    res.status(200).json(userMovies);
+    //  } catch (err) {
+    //    res.status(500).json(err);
+    res.render('userProfile', {
+      ...userMovies,
+      logged_in: true
+    });
+  } catch (err){
     res.status(500).json(err);
   }
 });
 
-router.post('/login', async (req, res) => {
+// delete a userTag
+// router.delete('/:id', withAuth, async (req, res) => {
+//   try {
+//     const doomedData = await UserTag.destroy({
+//       where: {
+//         id: req.params.id,
+//       },
+//     });
+
+//     if (!doomedData) {
+//       res.status(404).json({ message: 'No movie found with that id!' });
+//       return;
+//     }
+
+//     res.status(200).json(doomedData);
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+router.delete('/:id', withAuth, async (req, res) => {
   try {
-    const userData = await User.findOne({
+    const findDoomedData = await Movie.findByPk(req.params.id);
+    const doomedData = await UserTag.destroy({
       where: {
-        username: req.body.username,
+        movie_id: findDoomedData.id,
+        user_id: req.sessions.userId,
       },
     });
 
-    if (!userData) {
-      res.status(400).json({message: 'Incorrect email or password, please try again'});
+    if (!doomedData) {
+      res.status(404).json({ message: 'That movie is not in your collection!' });
       return;
     }
 
-    const validPassword = await userData.checkPassword(req.body.password);
-
-    if (!validPassword) {
-      res.status(400).json({message: 'Incorrect email or password, please try again'});
-      return;
-    }
-
-    req.session.save(() => {
-      req.session.logged_in = true;
-      req.session.username = userData.username;
-      req.session.userId = userData.id;
-      res.status(200).json({ user: userData, message: 'Logged in!' });
-    });
-
+    res.status(200).json(doomedData);
   } catch (err) {
     res.status(500).json(err);
   }
 });
-
-//Logout
-router.post('/logout', (req, res) => {
-  if (req.session.logged_in) {
-    req.session.destroy(() => {
-      res.status(204).end();
-    });
-  } else {
-    res.status(404).end();
-  }
-});
-
-//generate the index.js and handlebars page by completing a get request
-router.get('/', async (req, res) =>{
-  if (req.session.logged_in){
-    res.redirect('userProfile');
-    return;
-  }
-  res.render('login');
-});
-
 module.exports = router;
