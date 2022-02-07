@@ -10,12 +10,13 @@ div class="row">
 
     <form class="form new-movie-form">
       <div class="form-group">
-        <label for="movie-name">Search Movie Title</label>
-        <input class="form-input" type="text" id="movie-search" name="movie-name" />
-        <div class="form-group">
-          <button class="btn btn-primary" type="submit">Search</button>
-        </div>
+        <label for="movie-name">search:</label>
+        <input class="form-input" type="text" id="project-name" name="project-name" />
       </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">🔎</button>
+      </div>
+    </form>
 
       {{#if movies.length}}
       <div class="col-md-6 project-list">
