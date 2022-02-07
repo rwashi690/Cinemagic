@@ -89,8 +89,14 @@ router.get('/:id', withAuth, async (req, res) => {
 
     const userMovies = await Promise.all(moviePromises);
 
-    res.status(200).json(userMovies);
-  } catch (err) {
+    //    res.status(200).json(userMovies);
+    //  } catch (err) {
+    //    res.status(500).json(err);
+    res.render('userProfile', {
+      ...userMovies,
+      logged_in: true
+    });
+  } catch (err){
     res.status(500).json(err);
   }
 });
