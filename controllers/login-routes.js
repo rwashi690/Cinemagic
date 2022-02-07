@@ -18,6 +18,10 @@ router.post('/', async (req, res) => {
       req.session.userId = userData.id;
       res.status(200).json(userData);
     });
+    res.render('userProfile', {
+      ...userMovies,
+      logged_in: true
+    });
   } catch(err) {
     res.status(500).json(err);
   }

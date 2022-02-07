@@ -8,7 +8,7 @@ const { UserTag, Movie } = require('../models');
 const withAuth = require('../utils/authentication');
 
 // import the api key
-const apikey = config.API_KEY;
+// const apikey = config.API_KEY;
 
 // make new Movie model to display from the api call data
 router.post('/', withAuth, async (req, res) => {

@@ -48,7 +48,7 @@ function providerBoolean (providers) {
 
 // second api call to return providers
 function getMovieProviders(movieId) {
-  fetch(`https://api.themoviedb.org/3/movie/${movieId}/watch/providers?api_key=de9c1cbc12726b5dfbdf93e65610b6dc`, {
+  fetch(`https://api.themoviedb.org/3/movie/${movieId}/watch/providers?api_key=${apikey}`, {
     "method": "GET"
   }
   )
@@ -69,7 +69,7 @@ function getMovieProviders(movieId) {
 
 // api call to return data
 function searchFunction(query) {
-  fetch(`https://api.themoviedb.org/3/search/movie?api_key=de9c1cbc12726b5dfbdf93e65610b6dc&language=en-US&query=${movieSearched}&page=1`, {
+  fetch(`https://api.themoviedb.org/3/search/movie?api_key=${apikey}&language=en-US&query=${movieSearched}&page=1`, {
     "method": "GET"
   }
   )
