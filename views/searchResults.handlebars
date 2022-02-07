@@ -1,7 +1,8 @@
 div class="row">
-  <div class="col-auto">
-    <h2>Welcome, {{username}}!</h2>
-  </div>
+<div class="col-auto">
+  <h2>Welcome, {{username}}!</h2>
+  <button type="submit" class="btn btn-primary" id="logout">logout</button>
+</div>
 </div>
 
 <div class="row mt-4">
@@ -10,24 +11,83 @@ div class="row">
 
     <form class="form new-movie-form">
       <div class="form-group">
-        <label for="movie-name">:</label>
-        <input class="form-input" type="text" id="movie-search" name="movie-name" />
+        <label for="movie-name">search:</label>
+        <input class="form-input" type="text" id="movie-name" name="project-name" />
       </div>
-      
-
-  {{#if movies.length}}
-  <div class="col-md-6 project-list">
-
-    {{#each movies as |movie|}}
-    <div class="row mb-2">
-      <div class="col-md-8">
-        <h4>{{movie.title}} {{movie.avgRating}} {{movie.avgRating}}</h4>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">🔎</button>
       </div>
-      
-    </div>
-    {{/each}}
-  </div>
-  {{/if}}
-</div>
+    </form>
 
-{{!-- <script src="./js/profile.js"></script> --}}
+      {{#if movies.length}}
+      <div class="col-md-6 project-list">
+        <h3>Current Movies:</h3>
+
+        {{#each movies as |movie|}}
+        <div class="row mb-2">
+          <div class="col-md-8">
+            {{!-- <img src=` ${image source}`> --}}
+            <h4>{{movie.title}}</h4>
+            <h4>{{movie.avgRating}} </h4>
+            <h4>{{movie.releaseDate}}</h4>
+            <h4>{{movie.tagline}}</h4>
+            <h4>{{movie.releaseDate}}</h4>
+            <h4>Not for kids? {{movie.adult}}</h4>
+            {{#if movies.netflix_avail:}}<div>
+              <a href="https:Netflix.com"> <img src="https://img.icons8.com/color/48/000000/netflix.png" /></a>
+              {{/if}}
+
+              {{#if movies.apv_avail:}}<div>
+                <a href="https://www.amazon.com/gp/video/storefront"> <img
+                    src="https://img.icons8.com/color/48/000000/amazon-prime-video.png" /></a>
+                {{/if}}
+
+                {{#if movies.disneyp_avail:}}<div>
+                  <a href="https://www.disneyplus.com/"> <img
+                      src="https://img.icons8.com/ios-filled/50/000000/disney-plus.png" /></a>
+                  {{/if}}
+
+                  {{#if movies.funimation_avail:}}<div>
+                    <a href="https://www.funimation.com/"> <img
+                        src="https://img.icons8.com/doodle/48/000000/funimation.png" /></a>
+                    {{/if}}
+
+                    {{#if movies.hulu_avail:}}<div>
+                      <a href="https://www.hulu.com/welcome"> <img
+                          src="https://img.icons8.com/color/48/000000/hulu.png" /></a>
+                      {{/if}}
+
+                      {{#if movies.hbomax_avail:}}<div>
+                        <a href="https://www.hbomax.com/"> <img
+                            src="https://img.icons8.com/doodle/48/000000/hbo-max.png" /></a>
+                        {{/if}}
+
+                        {{#if movies.peacock_avail:}}<div>
+                          <a href="https://www.peacocktv.com/"> <img
+                              src="https://img.icons8.com/ios-filled/50/000000/NBC.png" /></a>
+                          {{/if}}
+
+                          {{#if movies.crunchyroll_avail:}}<div>
+                            <a href="https://www.crunchyroll.com/"> <img src="https://img.icons8.com/ios/50/000000/crunchyroll.png"/></a>
+                            {{/if}}
+
+                            {{#if movies.paramountp_avail:}}<div>
+                              <a href="https://www.paramountplus.com/"> <img src="https://img.icons8.com/clouds/50/000000/paramount-plus.png"/></a>
+                              {{/if}}
+
+                              {{#if movies.appletvp_avail:}}<div>
+                                <a href="https://tv.apple.com/"> <img src="https://img.icons8.com/fluency/48/000000/apple-tv.png"/></a>
+                                {{/if}}
+
+                                <div class="form-group">
+                                  <button type="submit" class="btn btn-primary">Add to favorites</button>
+                                </div>
+                              </div>
+
+                            </div>
+                            {{/each}}
+                          </div>
+                          {{/if}}
+                        </div>
+
+                        <script src="./js/searchpost.js"></script>
