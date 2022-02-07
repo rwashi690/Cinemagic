@@ -2,7 +2,15 @@
 const removeMovieHandler = async (event) => {
   event.preventDefault();
 
-  console.log('i love quan');
+  const response = await fetch('/user/:id' , {
+    method: 'DELETE',
+  });
+
+  if (response.ok) {
+    document.location.replace('/user/:id');
+  } else {
+    alert('Failed to remove Movie');
+  }
 };
 
 // add event listener to activate
