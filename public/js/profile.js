@@ -2,16 +2,16 @@
 const loadAllMoviesHandler = async (event) => {
   event.preventDefault();
 
-  const userID = req.sessions.userId;
+  //const userID = req.sessions.userId;
 
   if (userID) {
-    const response = await fetch('/user/' + userID, {
+    const response = await fetch("/user/profile", {
       method: 'GET',
       body: userID,
     });
 
     if (response.ok) {
-      document.location.replace('/user/' + userID);
+      document.location.replace("/user/profile");
     } else {
       res.status(500).json({ message: 'Oops, something went wrong.' });
     }
@@ -27,13 +27,13 @@ const removeMovieHandler = async (event) => {
   const userID = req.sessions.userId;
   //send that id through a fetch delete request
   if (doomedId && userID) {
-    const response = await fetch('/user/' + userID, {
+    const response = await fetch("/user/profile", {
       method: 'DELETE',
       body: doomedId,
     });
 
     if (response.ok) {
-      document.location.replace('/user/' + userID);
+      document.location.replace("/user/profile");
     } else {
       alert('Failed to remove Movie');
     }
