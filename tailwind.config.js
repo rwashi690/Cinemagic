@@ -1,7 +1,6 @@
 module.exports = {
   content: [
-    './views/*.handlebars',
-    './public/css/*.js'
+    "./views/layouts/*.hbs",
   ],
   theme: {
     extend: {},
