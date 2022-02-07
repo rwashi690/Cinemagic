@@ -13,7 +13,7 @@ const loginHandler = async (event) => {
       headers: {'Content-Type':'application/json'},
     });
     if (response.ok) {
-      document.location.replace('/user/profile' );
+      document.location.replace('/user/profile');
       //document.location.replace('/user/' + userID);
     } else {
       alert(response.statusText);
@@ -43,5 +43,5 @@ const signupHandler =async (event)=>{
   }
 };
 console.log('Am I here!');
-// document.querySelector('.loginForm').addEventListener('submit', loginHandler);
+document.querySelector('.loginForm').addEventListener('submit', loginHandler);
 document.querySelector('.signupForm').addEventListener('submit', signupHandler);
