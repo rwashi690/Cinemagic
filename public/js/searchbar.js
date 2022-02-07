@@ -1,48 +1,40 @@
 // function to turn watch providers list into booleans
-function providerBoolean (providers) {
-  const providerIds = providers.map(element => element.provider_id);
+function providerBoolean (providersList) {
+  const providerIds = providersList.map(element => element.provider_id);
+  console.log(providerIds);
   const booleans = providerIds.map(element => {
     switch (element) {
     case 8:
     case 175:
-      netflix_avail = true;
-      break;
+      return 1;
     case 119:
     case 9:
-      apv_avail = true;
-      break;
+      return 2;
     case 390:
     case 337:
-      disneyp_avail = true;
-      break;
+      return 3;
     case 269:
-      funimation_avail = true;
-      break;
+      return 4;
     case 15:
-      hulu_avail = true;
-      break;
+      return 5;
     case 384:
     case 616:
-      hbomax_avail = true;
-      break;
+      return 6;
     case 386:
     case 387:
-      peacock_avail = true;
-      break;
+      return 7;
     case 283:
-      crunchyroll_avail = true;
-      break;
+      return 8;
     case 531:
-      paramountp_avail = true;
-      break;
+      return 9;
     case 642:
     case 350:
-      appletvp_avail = true;
-      break;
+      return 10;
     default:
       console.log('No streaming services carry this movie');
     }
   });
+  console.log(booleans);
   return booleans;
 }
 
@@ -60,13 +52,21 @@ function getMovieProviders(movieId) {
       const { id, results } = data;
       console.log(results.US.flatrate);
       let providers = results.US.flatrate;
+      console.log(providers);
       const test2 = providerBoolean(providers);
       console.log(test2);
+      return test2;
     })
     .catch(err => {
       console.error(err);
     });
 }
+
+// function to return the id of the first result
+const test3 = (stuff) => {
+  const { page, results, total_pages, total_results } = stuff;
+  return results[0].id;
+};
 
 // api call to return data
 function searchFunction(query) {
@@ -97,15 +97,9 @@ function searchFunction(query) {
     });
 }
 
-//creating a function to execute search
-function search(movieInput) {
-  searchFunction(movieInput);
-}
-
 // function to clean data to be useable
 function cleanDataFunction (rawData) {
   console.log(rawData);
-  return rawData;
 }
 
 // send data to api when query is typed and button is pressed
@@ -140,7 +134,17 @@ searchInput = document.getElementById('movie-name');
 submitButton.addEventListener("click", function(event) {
   event.preventDefault();
   let movie = searchInput.value;
-  search(movie);
+  let rawData = searchFunction(movie);
+  // let parsedRaw = JSON.parse(rawData);
+  let providers = getMovieProviders(rawData.results[0].id);
+  console.log(providers);
+  let simpleProviders = providerBoolean(providers);
+  let allData1 = {
+    ...simpleProviders,
+    ...parsedRaw
+  };
+  let allData2 = JSON.stringify(allData1);
+  console.log(allData2);
 });
 
 // document
