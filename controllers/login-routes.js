@@ -75,7 +75,7 @@ module.exports = router;
 //generate the index.js and handlebars page by completing a get request
 router.get('/', async (req, res) =>{
   if (req.session.logged_in){
-    res.redirect('userProfile');
+    res.redirect('/user/profile');
     return;
   }
   res.render('login');
