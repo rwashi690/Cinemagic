@@ -5,7 +5,12 @@ movieTitleEl = document.getElementById('title');
 moviePosterEl=document.getElementById('poster');
 streamingServicesEl=document.getElementById('streaming_services');
 const apikey = config.API_KEY;
-
+//adding function to celar previous search history of streaming services
+function clearSearch() {
+  streamingServicesEl.innerHTML = '';
+}
+submitButton = document.getElementById('submit-button');
+submitButton.addEventListener('click', clearSearch);
 
 // second api call to return providers
 function getMovieProviders(movieId) {
@@ -96,9 +101,7 @@ function getMovieTitle(movieSearched){
 // };
 
 // actual event listener
-submitButton = document.getElementById('submit-button');
 searchInput = document.getElementById('movie-name');
-
 submitButton.addEventListener("click", function(event) {
   event.preventDefault();
   let movie = searchInput.value;
