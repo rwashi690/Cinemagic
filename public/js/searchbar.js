@@ -35,7 +35,7 @@ function providerBoolean (providersList) {
     }
   });
   console.log(booleans);
-  return booleans;
+  return JSON.stringify(booleans);
 }
 
 // second api call to return providers
@@ -55,18 +55,11 @@ function getMovieProviders(movieId) {
       console.log(providers);
       const test2 = providerBoolean(providers);
       console.log(test2);
-      return test2;
     })
     .catch(err => {
       console.error(err);
     });
 }
-
-// function to return the id of the first result
-const test3 = (stuff) => {
-  const { page, results, total_pages, total_results } = stuff;
-  return results[0].id;
-};
 
 // api call to return data
 function searchFunction(query) {
@@ -103,29 +96,29 @@ function cleanDataFunction (rawData) {
 }
 
 // send data to api when query is typed and button is pressed
-const searchBarFunctionHandler = async (event) => {
-  event.preventDefault();
+// const searchBarFunctionHandler = async (event) => {
+//   event.preventDefault();
 
-  const searchBar = document.querySelector('#movie-name').value.trim();
+//   const searchBar = document.querySelector('#movie-name').value.trim();
 
-  // check for null value and cancel if null; otherwise send api call
-  if (searchBar) {
-    // api call to return data and movie id, which is then run to get providers and also turned those into booleans
-    const rawData = search(searchBar);
-    // run function to clean data to return the result of the api call as a json that can be read for Movie model
-    const cleanData = cleanDataFunction(rawData);
-    //send the movie's cleaned data to be turned into a Movie
-    const response = await fetch('/search', {
-      method: 'POST',
-      body: cleanData,
-    });
-    if(response.ok) {
-      document.location.replace('/search');
-    } else {
-      res.status(500).json({ message: 'Oops, something went wrong.' });
-    }
-  }
-};
+//   // check for null value and cancel if null; otherwise send api call
+//   if (searchBar) {
+//     // api call to return data and movie id, which is then run to get providers and also turned those into booleans
+//     const rawData = search(searchBar);
+//     // run function to clean data to return the result of the api call as a json that can be read for Movie model
+//     const cleanData = cleanDataFunction(rawData);
+//     //send the movie's cleaned data to be turned into a Movie
+//     const response = await fetch('/search', {
+//       method: 'POST',
+//       body: cleanData,
+//     });
+//     if(response.ok) {
+//       document.location.replace('/search');
+//     } else {
+//       res.status(500).json({ message: 'Oops, something went wrong.' });
+//     }
+//   }
+// };
 
 // actual event listener
 submitButton = document.getElementById('submit-button');
@@ -135,16 +128,7 @@ submitButton.addEventListener("click", function(event) {
   event.preventDefault();
   let movie = searchInput.value;
   let rawData = searchFunction(movie);
-  // let parsedRaw = JSON.parse(rawData);
-  let providers = getMovieProviders(rawData.results[0].id);
-  console.log(providers);
-  let simpleProviders = providerBoolean(providers);
-  let allData1 = {
-    ...simpleProviders,
-    ...parsedRaw
-  };
-  let allData2 = JSON.stringify(allData1);
-  console.log(allData2);
+  console.log(rawData);
 });
 
 // document
