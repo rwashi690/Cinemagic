@@ -13,7 +13,7 @@ const loginHandler = async (event) => {
       headers: {'Content-Type':'application/json'},
     });
     if (response.ok) {
-      document.location.replace('/user/profile' );
+      document.location.replace('/user/profile');
       //document.location.replace('/user/' + userID);
     } else {
       alert(response.statusText);

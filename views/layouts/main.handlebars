@@ -18,7 +18,7 @@
     <nav class="bg-teal-500 p-6">
       <!-- Conditionally render login or logout links -->
       {{#if logged_in}}
-      <a href="/profile">profile</a>
+      {{!-- <a href="/profile">profile</a> --}}
       <button class="text-white px-3 py-2 rounded-md text-sm font-medium hover:text-slate-500 no-button"
         id="logout">Logout</button>
       {{!-- {{else}} --}}
@@ -38,11 +38,13 @@
       </div>
     </footer>
   </div>
-
-
+  {{!-- <script src="/js/profile.js"></script> --}}
+  {{!-- <script src="/js/searchbar.js"></script> --}}
+  {{!-- <script src="/js/login.js"></script> --}}
+  {{!-- <script src="/js/searchpost.js"></script> --}}
   <!-- Render script for logged in users only -->
   {{#if logged_in}}
-  <script src=" /js/logout.js">
+  <script src="/js/logout.js">
   </script>
   {{/if}}
 </body>
