@@ -6,28 +6,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cinemagic</title>
   <link rel="stylesheet" href="/css/output.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Roboto+Mono&family=Roboto:wght@300&family=Source+Code+Pro&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
   <div>
-    <nav class="flex items-center justify-between flex-wrap bg-teal-500 p-6">
+    <nav class="bg-teal-500 p-6">
       <!-- Conditionally render login or logout links -->
       {{#if logged_in}}
       {{!-- <a href="/profile">profile</a> --}}
       <button class="text-white px-3 py-2 rounded-md text-sm font-medium hover:text-slate-500 no-button"
         id="logout">Logout</button>
       {{!-- {{else}} --}}
-      {{!-- <a class=" text-white px-3 py-2 rounded-md text-sm font-medium hover:text-slate-500" href="/login">Login</a> --}}
+      {{!-- <a class=" text-white px-3 py-2 rounded-md text-sm font-medium hover:text-slate-500" href="/login">Login</a>
+      --}}
       {{/if}}
     </nav>
-
 
     <div class="">
       <!-- Render the sub layout -->
       {{{ body }}}
     </div>
-    <footer>
 
+    <footer class="w-full bg-teal-500 fixed bottom-0">
+      <div class="text-gray-700 text-center">
+        © 2022 Copyright
+      </div>
     </footer>
   </div>
   {{!-- <script src="/js/profile.js"></script> --}}
