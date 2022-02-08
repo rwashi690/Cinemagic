@@ -25,10 +25,10 @@ function getMovieProviders(movieId) {
       //console.log(data)
       const { id, results} = data;
       let providers = results.US.flatrate;
-      console.log(providers);
+      // console.log(providers);
       for (let i=0; i<providers.length;i++){
-        console.log(providers[i]);
-        console.log(providers[i].logo_path);
+        // console.log(providers[i]);
+        // console.log(providers[i].logo_path);
         var img = new Image(100,100);
         img.src = `https://image.tmdb.org/t/p/original/${providers[i].logo_path}`;
         var src = document.getElementById("streaming_services");
@@ -53,7 +53,7 @@ function getMovieTitle(movieSearched){
     .then(data => {
       //console.log(data);
       const { page, results, total_pages, total_results } = data;
-      console.log(results[0]);
+      // console.log(results[0]);
       let movieTitle =results[0].title;
       let movieDescription =results[0].overview;
       let movieRelease =results[0].release_date;

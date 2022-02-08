@@ -42,6 +42,6 @@ const signupHandler =async (event)=>{
     }
   }
 };
-console.log('Am I here!');
+//console.log('Am I here!');
 document.querySelector('.loginForm').addEventListener('submit', loginHandler);
 document.querySelector('.signupForm').addEventListener('submit', signupHandler);
