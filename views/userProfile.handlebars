@@ -1,103 +1,116 @@
-<div class="row">
-  <div class="col-auto">
-    {{!-- <h2>Welcome, {{username}}!</h2> --}}
+<container class="mt-6 flex flex-wrap justify-center space-y-4">
+  <div>
+    <h2 class="justify-center font-pacifico text-2xl">Your movie adventure awaits below!</h2>
     {{!-- <button type="submit" class="btn btn-primary" id="logout">logout</button> --}}
-  </div>
-</div>
-
-<div class="row mt-4">
-  <div class="col-md-6">
-    {{!-- <h3>Check out movie:</h3> --}}
-
-    <form class="form new-movie-form">
-      <div class="form-group">
-        <label for="movie-name">search:</label>
-        <input class="form-input" type="text" id="movie-name" name="movie-name" />
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary" id="submit-button">🔎</button>
-      </div>
-    </form>
-  </div>
-            <p id="title"></p>
-            <p id="release_date"></p>
-            <p id="description"></p>
-            <img id="poster" />
-        <div id="streaming_services">
-            <!-- <img id=""/> -->
+    <div class="p-4 my-2">
+      {{!-- <h3>Check out movie:</h3> --}}
+      <form class="form new-movie-form">
+        <div class="items-center form-group">
+          <label for="movie-name"></label>
+          <input class="shadow border rounded w-full text-slate-500 leading-tight py-2" type="search" id="movie-name"
+            name="movie-name" placeholder="Search Cinemagic" />
+          <button type="submit" class="btn btn-primary" id="submit-button"></button>
         </div>
+        <div class="form-group">
+        </div>
+      </form>
+    </div>
+  </div>
+</container>
+<container class="p-2 my-6 flex justify-around space-y-4">
+  <div>
+    <img class="shadow-md" id="poster" />
+  </div>
+  <div>
+    <p class="font-bold text-2xl" id="title"></p>
+    <p class="underline decoration-dotted" id="release_date"></p>
+    <div class="max-w-sm align-top">
+      <p class="italic" id="description"></p>
+    </div>
+    <div class="block max-w-sm my-4" id="streaming_services">
+      <!-- <img id=""/> -->
+    </div>
+  </div>
+</container>
 
-  {{#if usermovies.length}}
-  <div class="col-md-6 movie-list">
-    <h3>Current Movies:</h3>
 
-    {{#each usermovies as |usermovie|}}
-    <div class="row mb-2">
-      <div class="col-md-8">
-         {{!-- <img src=` ${image source}`> --}}
-        <h4>{{movie.name}}</a></h4>
-         <h4>{{movie.title}}</h4>
-         <h4>{{movie.avgRating}} </h4>
-          <h4>{{movie.releaseDate}}</h4>
-           <h4>{{movie.tagline}}</h4>
-           <h4>{{movie.releaseDate}}</h4>
-            <h4>Not for kids? {{movie.adult}}</h4>
-            {{#if movies.netflix_avail:}}<div>
-              <a href="https:Netflix.com"> <img src="https://img.icons8.com/color/48/000000/netflix.png" /></a>
+{{#if usermovies.length}}
+<div class="col-md-6 movie-list">
+  <h3>Current Movies:</h3>
+
+  {{#each usermovies as |usermovie|}}
+  <div class="row mb-2">
+    <div class="col-md-8">
+      {{!-- <img src=` ${image source}`> --}}
+      <h4>{{movie.name}}</a></h4>
+      <h4>{{movie.title}}</h4>
+      <h4>{{movie.avgRating}} </h4>
+      <h4>{{movie.releaseDate}}</h4>
+      <h4>{{movie.tagline}}</h4>
+      <h4>{{movie.releaseDate}}</h4>
+      <h4>Not for kids? {{movie.adult}}</h4>
+      {{#if movies.netflix_avail:}}<div>
+        <a href="https:Netflix.com"> <img src="https://img.icons8.com/color/48/000000/netflix.png" /></a>
+        {{/if}}
+
+        {{#if movies.apv_avail:}}<div>
+          <a href="https://www.amazon.com/gp/video/storefront"> <img
+              src="https://img.icons8.com/color/48/000000/amazon-prime-video.png" /></a>
+          {{/if}}
+
+          {{#if movies.disneyp_avail:}}<div>
+            <a href="https://www.disneyplus.com/"> <img
+                src="https://img.icons8.com/ios-filled/50/000000/disney-plus.png" /></a>
+            {{/if}}
+
+            {{#if movies.funimation_avail:}}<div>
+              <a href="https://www.funimation.com/"> <img
+                  src="https://img.icons8.com/doodle/48/000000/funimation.png" /></a>
               {{/if}}
 
-              {{#if movies.apv_avail:}}<div>
-                <a href="https://www.amazon.com/gp/video/storefront"> <img
-                    src="https://img.icons8.com/color/48/000000/amazon-prime-video.png" /></a>
+              {{#if movies.hulu_avail:}}<div>
+                <a href="https://www.hulu.com/welcome"> <img
+                    src="https://img.icons8.com/color/48/000000/hulu.png" /></a>
                 {{/if}}
 
-                {{#if movies.disneyp_avail:}}<div>
-                  <a href="https://www.disneyplus.com/"> <img
-                      src="https://img.icons8.com/ios-filled/50/000000/disney-plus.png" /></a>
+                {{#if movies.hbomax_avail:}}<div>
+                  <a href="https://www.hbomax.com/"> <img
+                      src="https://img.icons8.com/doodle/48/000000/hbo-max.png" /></a>
                   {{/if}}
 
-                  {{#if movies.funimation_avail:}}<div>
-                    <a href="https://www.funimation.com/"> <img
-                        src="https://img.icons8.com/doodle/48/000000/funimation.png" /></a>
+                  {{#if movies.peacock_avail:}}<div>
+                    <a href="https://www.peacocktv.com/"> <img
+                        src="https://img.icons8.com/ios-filled/50/000000/NBC.png" /></a>
                     {{/if}}
 
-                    {{#if movies.hulu_avail:}}<div>
-                      <a href="https://www.hulu.com/welcome"> <img
-                          src="https://img.icons8.com/color/48/000000/hulu.png" /></a>
+                    {{#if movies.crunchyroll_avail:}}<div>
+                      <a href="https://www.crunchyroll.com/"> <img
+                          src="https://img.icons8.com/ios/50/000000/crunchyroll.png" /></a>
                       {{/if}}
 
-                      {{#if movies.hbomax_avail:}}<div>
-                        <a href="https://www.hbomax.com/"> <img
-                            src="https://img.icons8.com/doodle/48/000000/hbo-max.png" /></a>
+                      {{#if movies.paramountp_avail:}}<div>
+                        <a href="https://www.paramountplus.com/"> <img
+                            src="https://img.icons8.com/clouds/50/000000/paramount-plus.png" /></a>
                         {{/if}}
 
-                        {{#if movies.peacock_avail:}}<div>
-                          <a href="https://www.peacocktv.com/"> <img
-                              src="https://img.icons8.com/ios-filled/50/000000/NBC.png" /></a>
+                        {{#if movies.appletvp_avail:}}<div>
+                          <a href="https://tv.apple.com/"> <img
+                              src="https://img.icons8.com/fluency/48/000000/apple-tv.png" /></a>
                           {{/if}}
+                        </div>
+                        <div class="col-md-4">
+                          <button class="btn btn-sm btn-danger" data-id="{{movie.id}}">DELETE</button>
+                        </div>
+                      </div>
+                      {{/each}}
+                    </div>
+                    {{/if}}
+                  </div>
+                </div>
 
-                          {{#if movies.crunchyroll_avail:}}<div>
-                            <a href="https://www.crunchyroll.com/"> <img src="https://img.icons8.com/ios/50/000000/crunchyroll.png"/></a>
-                            {{/if}}
+                </container>
+                <script type='text/javascript' src='/js/config.js'></script>
+                <script src="/js/searchbar.js"></script>
+                <script src="/js/profile.js">
 
-                            {{#if movies.paramountp_avail:}}<div>
-                              <a href="https://www.paramountplus.com/"> <img src="https://img.icons8.com/clouds/50/000000/paramount-plus.png"/></a>
-                              {{/if}}
-
-                              {{#if movies.appletvp_avail:}}<div>
-                                <a href="https://tv.apple.com/"> <img src="https://img.icons8.com/fluency/48/000000/apple-tv.png"/></a>
-                                {{/if}}
-      </div>
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="{{movie.id}}">DELETE</button>
-      </div>
-    </div>
-    {{/each}}
-  </div>
-  {{/if}}
-</div>
-<script type='text/javascript' src='/js/config.js'></script>
-<script src="/js/searchbar.js"></script>
-<script src="/js/profile.js">
-
-</script>
+                </script>
