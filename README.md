@@ -2,7 +2,7 @@
 Have you ever found it difficult going back and forth between streaming services to decide what movie to watch? Then Cinemagic is the web app for you. Have all your favorite movies in one place and create a virtual movie collection. Keep track of favorites and decide what you want to watch in one place rather than jumping from different streaming services. The last bonus is that Cinemagic lists all the streaming services each movie is available on rather than making you jump between apps. Consider Cinemagic your new digital magic movie collection.
 
 ## Deployed URL
-[Deploy app here](https://cinemajik.herokuapp.com/)
+[Deploy App Here](https://cinemajik.herokuapp.com/)
 
 ## Screenshot
 [Deployed Image](./homepage.png)
