@@ -1,13 +1,13 @@
-div class="row">
+<div class="row">
   <div class="col-auto">
-    <h2>Welcome, {{name}}!</h2>
+    {{!-- <h2>Welcome, {{username}}!</h2> --}}
     <button type="submit" class="btn btn-primary" id="logout">logout</button>
   </div>
 </div>
 
 <div class="row mt-4">
   <div class="col-md-6">
-    <h3>Check out movie:</h3>
+    {{!-- <h3>Check out movie:</h3> --}}
 
     <form class="form new-movie-form">
       <div class="form-group">
@@ -15,10 +15,17 @@ div class="row">
         <input class="form-input" type="text" id="movie-name" name="movie-name" />
       </div>
       <div class="form-group">
-        <button type="submit" class="btn btn-primary">🔎</button>
+        <button type="submit" class="btn btn-primary" id="submit-button">🔎</button>
       </div>
     </form>
   </div>
+            <p id="title"></p>
+            <p id="release_date"></p>
+            <p id="description"></p>
+            <img id="poster" />
+        <div id="streaming_services">
+            <!-- <img id=""/> -->
+        </div>
 
   {{#if usermovies.length}}
   <div class="col-md-6 movie-list">
@@ -89,5 +96,8 @@ div class="row">
   </div>
   {{/if}}
 </div>
+<script type='text/javascript' src='/js/config.js'></script>
+<script src="/js/searchbar.js"></script>
+<script src="/js/profile.js">
 
-<script src="./js/profile.js"></script>
+</script>
