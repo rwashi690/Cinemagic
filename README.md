@@ -51,6 +51,6 @@ Side Note: To use this code on your local computer make sure to download the app
 ## Contributors
 * Matt Enos [GitHub](https://github.com/mattenos), [LinkedIn](https://www.linkedin.com/in/matt-enos-2177b815/)
 * Sheen Hahn [GitHub](https://github.com/jhahnsheen), [LinkedIn](https://www.linkedin.com/in/jhahnsheen/)
-* Nick Lyle [GitHub](https://github.com/NickLyle2009), [LinkedIn](www.linkedin.com/in/nicholas-lyle-35b703a2)
+* Nick Lyle [GitHub](https://github.com/NickLyle2009), [LinkedIn](https://www.linkedin.com/in/nicholas-lyle-35b703a2/)
 * Michael Rawlings [GitHub](https://github.com/Mikerawl)
 * Rachel Washington [GitHub](https://github.com/rwashi690), [LinkedIn](https://www.linkedin.com/in/rachel-washington-913a0045/)
